@@ -98,7 +98,7 @@ function pinoLogger (opts, stream) {
     const req = this[reqObject]
     const res = this
 
-    const customPropBindings = (typeof customProps === 'function') ? customProps(req, res) : customProps
+    const customPropBindings = (typeof customProps === 'function') ? customProps(req, res, err) : customProps
     if (customPropBindings) {
       log = this.log.child(customPropBindings)
     }

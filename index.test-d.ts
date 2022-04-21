@@ -32,7 +32,7 @@ pinoHttp({ customAttributeKeys: { err: 'err' } });
 pinoHttp({ customAttributeKeys: { responseTime: 'responseTime' } });
 pinoHttp({ customAttributeKeys: { req: 'req', res: 'res', err: 'err', responseTime: 'responseTime' } });
 pinoHttp({ customLogLevel: (res: ServerResponse, error: Error) => 'info' });
-pinoHttp({ reqCustomProps: (req: IncomingMessage, res: ServerResponse) => ({ key1: 'value1', 'x-key-2': 'value2' }) });
+pinoHttp({ reqCustomProps: (req: IncomingMessage, res: ServerResponse, error?: Error) => ({ key1: 'value1', 'x-key-2': 'value2' }) });
 pinoHttp({ wrapSerializers: false });
 pinoHttp(new Writable());
 pinoHttp({ quietReqLogger: true, customAttributeKeys: { reqId: 'reqId' }});
@@ -119,7 +119,7 @@ const options: Options = {
   customErrorMessage: canBeUndefined((error: Error, res: ServerResponse) => 'errorMessage'),
   customAttributeKeys: canBeUndefined(customAttributeKeys),
   wrapSerializers: canBeUndefined(rtnBool()),
-  reqCustomProps: canBeUndefined((req: IncomingMessage, res: ServerResponse) => ({} as object)),
+  reqCustomProps: canBeUndefined((req: IncomingMessage, res: ServerResponse, error?: Error) => ({} as object)),
   quietReqLogger: canBeUndefined(rtnBool()),
 }
 
